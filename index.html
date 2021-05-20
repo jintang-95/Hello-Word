@@ -363,7 +363,7 @@
 					// myDate.getMonth(); //获取当前月份(0-11,0代表1月)
 					// myDate.getDate(); //获取当前日(1-31)
 					
-					let times =`${myDate.getFullYear()}-${myDate.getMonth()}-${myDate.getDate()}`
+					let times =`${myDate.getFullYear()}-${myDate.getMonth()+1}-${myDate.getDate()}`
 					let newMsg = {strong:this.value.strong,url:`img/ic_android${parseInt(3*Math.random())+1}.jpg`,text:this.value.text,saveTime:times}
 					this.list.unshift(newMsg)
 					this.value={
