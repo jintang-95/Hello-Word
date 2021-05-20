@@ -1,4 +1,7 @@
 /* 轮播图 */
+#app{
+	background-color: #e8e8ff;
+}
 .carousel {
 	height: 440px;
 	background-color: #000;
@@ -25,7 +28,29 @@
 	margin: auto;
 	font-size: 18px;
 }
-
+.footer{
+	/* width: 100vw; */
+	margin: 20px 0 auto;
+	text-align: center;
+	background-color: #e8e8ff;
+	color: #000;
+	height: 50px;
+	/* line-height: 50px; */
+	font-size: 16px;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.footer span:nth-of-type(1){
+	color: #00b271;
+}
+.footer span:nth-of-type(3){
+	color: #336699;
+}
+.footer span:nth-of-type(4){
+	color: #b45b3e;
+}
+ul li{
+	list-style-type: none;
+}
 
 .div_function {
 	width: 78%;
