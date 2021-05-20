@@ -4,7 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 	<title>永远相信美好的事情即将发生</title>
 	<link rel="shortcut icon" href="./img/love.svg" />
@@ -26,7 +27,7 @@
 		<!-- 右下角按钮 -->
 		<!-- <button class="btn btn-default btn_right_bottom">写</button> -->
 		<!-- 图片轮播 -->
-		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		<div id="carousel-example-generic" class="carousel container slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
 				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -88,7 +89,7 @@
 			</a>
 		</div>
 		<!-- 功能模块 -->
-		<div class="row div_function">
+		<div class="row container div_function">
 			<div class="col-xs-4">
 				<div class="panel panel-default" id="pFunc1">
 					<div class="panel-body">
@@ -98,7 +99,7 @@
 				</div>
 			</div>
 			<div class="col-xs-4">
-				<div class="panel panel-default" id="pFunc2" @click="fss('./watch/华为太空手表.html')">
+				<div class="panel panel-default" id="pFunc2" @click="fss('./watch/watch.html')">
 					<div class="panel-body">
 						<strong>太空人手表</strong>
 						<img class="iv_function watch" src="img/watch.svg">
