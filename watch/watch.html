@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>太空人</title>
     <style>
         @font-face {
             font-family: "led regular";
@@ -193,7 +193,7 @@
             <div id="line-down"></div>
             <div id="down-mid"></div>
         </div>
-        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+        <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
         
         setInterval(function time () {   //因为要实时获取时间，索引用了一个定时器,每隔10ms就会执行一次time这个函数
@@ -219,7 +219,7 @@
          var xmlhttp;
          function wether(){
             $.ajax({        //用jqurey封装的AJAX来从网站获取天气数据
-                url:"https://wthrcdn.etouch.cn/weather_mini?city=成都", //查找天气的网站，
+                url:"http://wthrcdn.etouch.cn/weather_mini?city=成都", //查找天气的网站，
                 dataType:"json",   //预期服务器返回的数据类型。
                 async:false,   //设为同步请求，将锁住浏览器，用户的其他操作必须等请求完成才能进行
             success:function(data){    //必须是function类型的参数，如果请求成功就会调用这个函数，
