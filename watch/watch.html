@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>太空人</title>
     <style>
         @font-face {
@@ -233,6 +234,12 @@
             })
             console.log(xmlhttp);
     }
+//     function wether(){
+//         $.get("https://api.seniverse.com/v3/weather/now.json?key=S6-ZQlVrPgWrT7-bC&location=chengdu&language=zh-Hans&unit=c", function(result){
+//             console.log(result);
+//   });
+//             console.log(xmlhttp);
+//     }
     setInterval(wether(),1000);  //因为是显示实时温度所以就用定时器，每个1s调用一次函数。
     
     var high=xmlhttp.data.forecast[0].high  //获取最高气温  数据类型是： 高温 26℃
