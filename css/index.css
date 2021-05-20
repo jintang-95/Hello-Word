@@ -31,11 +31,19 @@
 	width: 78%;
 	margin: auto;
 	margin-top: -52px;
-
+}
+.watch{
+	transform:rotate(-45deg);
 }
 .panel-default{
 	cursor: pointer;
+	
 }
+#pFunc1:hover,#pFunc2:hover,#pFunc3:hover{
+	background-color:rgba(0,0,0,.1) ;
+	color: #fff;
+}
+
 .iv_function {
 	width: 68px;
 	height: 68px;
@@ -52,8 +60,12 @@
 	display: inline-block;
 	vertical-align: middle;
 }
+.textNow{
+	color: cornflowerblue;
+	font-size: 20px;
+}
 .hr_2 {
-	width: 80%;
+	width: 70%;
 	display: inline-block;
 	vertical-align: middle;
 }
@@ -84,7 +96,10 @@
 	align-items: center;
 	overflow: hidden;	
 }
-
+.saveTime{
+	margin-top: 5px;
+	color: gray;
+}
 .div_center {
     height: auto;
     max-height: 140px;  
