@@ -318,7 +318,14 @@
 						strong: "",
 						text: "",
 					},
-					list: [{
+					list: [
+					{
+							strong: "520情人节快乐",
+							url: "img/love.svg",
+							text: "点我出现爱心",
+							saveTime: "2021-05-20"
+						}
+						,{
 							strong: "Android框架设计理念",
 							url: "img/ic_android1.jpg",
 							text: "所有设计源于生活，框终点在于分层、层与层之间如何交流。",
@@ -374,7 +381,9 @@
 					localStorage.setItem("myList", list);
 				},
 				goSee(val){
-					console.log(val);
+					if(val.strong== "520情人节快乐"&&val.text== "点我出现爱心"){
+						window.location.href='./love.html'
+					}
 				}
 			}
 		})
