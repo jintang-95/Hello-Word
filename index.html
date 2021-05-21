@@ -119,7 +119,8 @@
 		</div>
 		<!-- 技术日记 -->
 		<div class="container div_divider">
-			<!-- 分割线 --><span class="textNow" id="code"></span>
+			<!-- 分割线 --><span v-if="!mobile" class="textNow"  id="code"></span>
+						<span v-else class="textNow">未来可期！ </span>
 			<div class="row">
 				<!-- 文章列表 -->
 				<div v-if="!mobile" class="col-xs-9">
@@ -317,8 +318,14 @@
 		}
 	</script> -->
 	<script type="text/javascript">
-		var str = "纵 有 疾 风 起,人 生 不 言 弃,心 若 静 可 期 , 未 来 皆 是 你 ! 宝 ！";
-		
+		var str = "纵 有 疾 风 起 , 人 生 不 言 弃,心 若 静 可 期 , 未 来 皆 是 你 ! 宝 ！";
+		function isMobileOrPc() {
+					if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+						return true;
+					} else {
+						return false;
+					}
+				}
 		function scroll(){
 			for(let i =0;i<str.length;i++){
 			// console.log("循环内");
@@ -337,7 +344,10 @@
 			
 		}
 		}
-		scroll()
+		
+		if(!isMobileOrPc()){
+			scroll()
+		}
 		// function scroll() {
 		// 	msg = str.substring(0, seq + 1);
 		// 	document.getElementById('code').innerHTML = msg;
