@@ -1,0 +1,50 @@
+@media screen and (max-width: 780px) {
+    #app {
+        font-size: 0.3rem;
+        width: 100% !important;
+    }
+
+    .carousel {
+        height: 300px;
+        background-color: #000;
+    }
+
+    .carousel .item {
+        background-color: #000;
+        height: 300px;
+    }
+
+    .carousel-caption {
+        margin-bottom: 58px;
+    }
+
+    .panel {
+        width: 100px;
+        height: 156px;
+        text-align: center;
+        margin: 0 auto;
+        font-size: .3rem;
+    }
+
+    .div_function {
+        width: 100%;
+        margin: 0 auto;
+        margin-top: -42px;
+    }
+
+    .footer {
+        font-size: .1rem;
+    }
+
+    .div_article_title {
+        font-size: .25rem;
+    }
+    .div_article_content{
+        font-size: .2rem;
+    }
+    .saveTime{
+        font-size: .05rem;
+        width: 2.5rem;
+        margin-left: -.7rem;
+    }
+}
