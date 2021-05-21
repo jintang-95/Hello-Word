@@ -361,7 +361,7 @@
 					]
 				}
 			},
-			created() {
+			async created() {
 				if (localStorage.getItem("myList")) {
 					this.list = JSON.parse(localStorage.getItem("myList"))
 				}
@@ -374,14 +374,17 @@
 					}
 				}
 				// 移动端 rem 单位适配
-				if (isMobileOrPc()) {
+				 if (isMobileOrPc()) {
 					// width * 100 / 750 = width / 7.5
 					// 1rem = 100px
 					var width = window.screen.width;
 					window.document.getElementsByTagName("html")[0].style.fontSize =
 						width / 7.5 + "px";
-					this.mobile = true
 				}
+				this.mobile = isMobileOrPc()
+				setTimeout(() => {
+					
+				}, 100);
 			},
 			mounted() {},
 			methods: {
