@@ -317,16 +317,27 @@
 		}
 	</script> -->
 	<script type="text/javascript">
-		var str = "纵有疾风起,人生不言弃,心若静可期,未来皆是你!宝！";
-		for(let i =0;i<str.length;i++){
+		var str = "纵 有 疾 风 起,人 生 不 言 弃,心 若 静 可 期 , 未 来 皆 是 你 ! 宝 ！";
+		
+		function scroll(){
+			for(let i =0;i<str.length;i++){
 			// console.log("循环内");
 			// console.log(str);
 			var msg=''
 			setTimeout(() => {
 				msg+=str[i]
 				document.getElementById('code').innerHTML = msg
-			}, i*1000);
+				if(i==str.length-1){
+				setTimeout(() => {
+					msg=''
+				scroll()
+				}, 5000);
+			}
+			}, i*200);
+			
 		}
+		}
+		scroll()
 		// function scroll() {
 		// 	msg = str.substring(0, seq + 1);
 		// 	document.getElementById('code').innerHTML = msg;
