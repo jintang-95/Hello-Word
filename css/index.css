@@ -61,11 +61,13 @@ ul li{
 	margin-top: -52px;
 }
 .watch{
-	transform:rotate(-45deg);
+	transform:rotate(-70deg);
+	width: 100px !important;
+	height: 100px !important;
 }
 .panel-default{
 	cursor: pointer;
-	
+	overflow: hidden;
 }
 #pFunc1:hover,#pFunc2:hover,#pFunc3:hover{
 	background-color:rgba(0,0,0,.1) ;

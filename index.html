@@ -13,13 +13,14 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/mobile.css">
-
+	
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
+	
 </head>
 
 <body>
@@ -92,7 +93,7 @@
 		<!-- 功能模块 -->
 		<div class="row container div_function">
 			<div class="col-xs-4">
-				<div class="panel panel-default" id="pFunc1">
+				<div class="panel panel-default" id="pFunc1" @click="fss('./goodsomething.html')">
 					<div class="panel-body">
 						<strong>心灵语录</strong>
 						<img class="iv_function" src="img/love.svg">
@@ -103,12 +104,12 @@
 				<div class="panel panel-default" id="pFunc2" @click="fss('./watch/watch.html')">
 					<div class="panel-body">
 						<strong>太空人手表</strong>
-						<img class="iv_function watch" src="img/watch.svg">
+						<img class="iv_function watch" src="watch/3c235f84458df48e57def352432d1f35.gif">
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-4">
-				<div class="panel panel-default" id="pFunc3">
+				<div class="panel panel-default" id="pFunc3" @click="fss()">
 					<div class="panel-body">
 						<strong>私人角落</strong>
 						<img class="iv_function" src="img/ic_personal.svg">
@@ -118,9 +119,7 @@
 		</div>
 		<!-- 技术日记 -->
 		<div class="container div_divider">
-			<!-- 分割线 -->
-			<hr class="hr_1"><span class="textNow">永远相信美好的事情即将发生</span>
-			<hr class="hr_2">
+			<!-- 分割线 --><span class="textNow" id="code"></span>
 			<div class="row">
 				<!-- 文章列表 -->
 				<div v-if="!mobile" class="col-xs-9">
@@ -317,7 +316,25 @@
 			console.log(address);
 		}
 	</script> -->
-
+	<script type="text/javascript">
+		var str = "纵有疾风起,人生不言弃,心若静可期,未来皆是你!宝！";
+		for(let i =0;i<str.length;i++){
+			// console.log("循环内");
+			// console.log(str);
+			var msg=''
+			setTimeout(() => {
+				msg+=str[i]
+				document.getElementById('code').innerHTML = msg
+			}, i*1000);
+		}
+		// function scroll() {
+		// 	msg = str.substring(0, seq + 1);
+		// 	document.getElementById('code').innerHTML = msg;
+		// 	seq++;
+		// 	if (seq >= str.length) seq = 0;
+		// 	console.log(222);
+		// }
+	</script>
 	<script>
 		// let vm = new Vue();
 		new Vue({
@@ -374,54 +391,64 @@
 					}
 				}
 				// 移动端 rem 单位适配
-				 if (isMobileOrPc()) {
+				if (isMobileOrPc()) {
 					// width * 100 / 750 = width / 7.5
 					// 1rem = 100px
 					var width = window.screen.width;
 					window.document.getElementsByTagName("html")[0].style.fontSize =
 						width / 7.5 + "px";
+					// alert(`你是移动端,你的手机屏幕宽度为${width},你的根元素为${window.document.getElementsByTagName("html")[0].style.fontSize}`)
+				} else {
+					// alert("你是pc端")
 				}
 				this.mobile = isMobileOrPc()
 				setTimeout(() => {
-					
+
 				}, 100);
 			},
 			mounted() {},
 			methods: {
 				fss(address) {
-					window.location.href = address
+					if (address) window.location.href = address
+					else {
+						alert("功能正在开发中")
+					}
 				},
 				saveValue() {
 					// console.log(parseInt(3*Math.random())+1);
-					if(this.value.strong!=""&&this.value.text!=""){
+					if (this.value.strong != "" && this.value.text != "") {
 
-				
-					var myDate = new Date();
-					// myDate.getFullYear(); //获取完整的年份(4位,1970-????)
-					// myDate.getMonth(); //获取当前月份(0-11,0代表1月)
-					// myDate.getDate(); //获取当前日(1-31)
 
-					let times = `${myDate.getFullYear()}-${myDate.getMonth()+1}-${myDate.getDate()}`
-					let newMsg = {
-						strong: this.value.strong,
-						url: `img/ic_android${parseInt(3*Math.random())+1}.jpg`,
-						text: this.value.text,
-						saveTime: times
-					}
-					this.list.unshift(newMsg)
-					this.value = {
-						strong: "",
-						text: "",
-					}
-					let list = JSON.stringify(this.list)
-					localStorage.setItem("myList", list);
-					alert("发表成功")	}else{
+						var myDate = new Date();
+						// myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+						// myDate.getMonth(); //获取当前月份(0-11,0代表1月)
+						// myDate.getDate(); //获取当前日(1-31)
+
+						let times = `${myDate.getFullYear()}-${myDate.getMonth()+1}-${myDate.getDate()}`
+						let newMsg = {
+							strong: this.value.strong,
+							url: `img/ic_android${parseInt(3*Math.random())+1}.jpg`,
+							text: this.value.text,
+							saveTime: times
+						}
+						this.list.unshift(newMsg)
+						this.value = {
+							strong: "",
+							text: "",
+						}
+						let list = JSON.stringify(this.list)
+						localStorage.setItem("myList", list);
+						alert("发表成功")
+					} else {
 						alert("请输入")
 					}
 				},
 				goSee(val) {
 					if (val.strong == "520情人节快乐" && val.text == "点我出现爱心") {
 						window.location.href = './love.html'
+					} else {
+						let list = JSON.stringify(val)
+						localStorage.setItem("listMsg", list);
 					}
 				}
 			}

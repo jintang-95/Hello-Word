@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>永远相信美好的事情即将发生</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="./js/snowfall.jquery.js"></script>
     <style>
         body{
             margin: 0;
@@ -29,16 +31,67 @@
             width: 50vw;
             text-align: left;
         }
+        p:nth-last-of-type(1){
+            margin-bottom: 20px;
+        }
         .goodImage{
             margin-top: 20px;
             width: 50vw;
             height: 400px;
             
         }
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        /* .heart {
+            width: 400px;
+            margin: 100px auto;
+            position: relative;
+        } */
+
+        .snowfall-flakes:before,
+        .snowfall-flakes:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            display: block;
+            background: red;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .snowfall-flakes:before {
+            transform: rotate(-45deg);
+        }
+
+        .snowfall-flakes:after {
+            transform: rotate(45deg);
+            left: 7px;
+        }
+
+        /* body {
+            overflow: hidden;
+            background: url("images/mother.jpg");
+            background-position: center;
+            background-size: 50%;
+            background-repeat: no-repeat;
+        } */
+
+        body,
+        html {
+            /* height: 100%;
+            width: 100%; */
+            background-color: #F0C8C8;
+            color: white;
+            overflow: scroll;
+            overflow-x: hidden;
+        }
     </style>
 </head>
 <body>
-   <div id="app">
+   <div id="app" class="heart">
     <h1>永远相信美好的事情即将发生</h1>
     　<div class="goodtxt" v-for="(item,index) in list" :key="index">
         <p>{{index+1}}：{{item.text}}</p>
@@ -46,6 +99,16 @@
     </div>
    </div>
 </body>
+<script>
+    $(function () {
+        setTimeout(function () {
+            $(document).snowfall({
+                flakeCount: 30, //设置爱心数目
+                flakeColor: 'none'
+            })
+        }, 0);
+    })
+</script>
 <script src="js/vue.js"></script>
 <script>
     // let vm = new Vue();

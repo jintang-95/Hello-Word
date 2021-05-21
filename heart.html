@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>详情</title></title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="./js/snowfall.jquery.js"></script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .heart {
+            /* width: 400px; */
+            margin: 100px auto;
+            position: relative;
+            text-align: center;
+        }
+
+        .snowfall-flakes:before,
+        .snowfall-flakes:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            display: block;
+            background: red;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .snowfall-flakes:before {
+            transform: rotate(-45deg);
+        }
+
+        .snowfall-flakes:after {
+            transform: rotate(45deg);
+            left: 7px;
+        }
+        h2{
+            margin: 20px;
+        }
+        p{
+            padding: 5px;
+        }
+        /* body {
+            overflow: hidden;
+            background: url("images/mother.jpg");
+            background-position: center;
+            background-size: 50%;
+            background-repeat: no-repeat;
+        } */
+
+        body,
+        html {
+            background-color: #F0C8C8;
+            color: white;
+            /* overflow: scroll;
+            overflow-x: hidden; */
+            height: 100vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="heart" id="app">
+        <!-- <div class="snowfall-flakes"></div> -->
+       <div class="xq" >
+        <h2>{{list.strong}}</h2>
+        <p>{{list.text}}</p>
+       </div>
+    </div>
+    <script>
+        $(function () {
+            setTimeout(function () {
+                $(document).snowfall({
+                    flakeCount: 30, //设置爱心数目
+                    flakeColor: 'none'
+                })
+            }, 0);
+        })
+    </script>
+    <script src="js/vue.js"></script>
+    <script>
+        new Vue({
+			el: '#app',
+			data() {
+				return {
+					mobile: false,
+					list: null
+				}
+			},
+			async created() {
+				if (localStorage.getItem("listMsg")) {
+					this.list = JSON.parse(localStorage.getItem("listMsg"))
+				}
+
+				function isMobileOrPc() {
+					if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+						return true;
+					} else {
+						return false;
+					}
+				}
+				// 移动端 rem 单位适配
+				 if (isMobileOrPc()) {
+					// width * 100 / 750 = width / 7.5
+					// 1rem = 100px
+					var width = window.screen.width;
+					window.document.getElementsByTagName("html")[0].style.fontSize =
+						width / 7.5 + "px";
+				}
+				this.mobile = isMobileOrPc()
+				setTimeout(() => {
+					
+				}, 100);
+			},
+			mounted() {},
+			methods: {
+				fss(address) {
+					window.location.href = address
+				},
+				saveValue() {
+				
+			}}
+		})
+    </script>
+</body>
+
+</html>
