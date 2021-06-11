@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #audio-controls {
+            width: 300px;
+            height: 60px;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+        }
+
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 60px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        #name_time {
+            width: 280px;
+            height: 30px;
+            text-align: center;
+            padding: 0 10px;
+            margin: 10px;
+        }
+
+        #musicName {
+            float: left;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        #time {
+            float: right;
+            color: #ccc;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #lyric-area {
+            margin-top: 20px;
+            width: 300px;
+            height: 113px;
+            overflow: hidden;
+            border: 1px solid grey;
+            border-radius: 20px;
+            color: black;
+            box-shadow: 0px 0px 20px red;
+            font-size: .9rem;
+        }
+
+        #showLrc {
+            line-height: 30px;
+            transition-duration: 600ms;
+        }
+
+        .currentLrc {
+            color: #5ab0ec;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        #progress-bar {
+            width: 300px;
+            height: 3px;
+            background-color: #e0e0e0;
+            margin-bottom: 10px;
+        }
+
+        #finished {
+            width: 0%;
+            height: 100%;
+            background-color: #D2413A;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="musicBox">
+        <textarea name="lrc" class="lrc-container" rows="15" cols="10" style="display: none">
+            [ti:暖暖]
+    [ar:梁静茹]
+    [al:亲亲]
+    [by:Bén豬]
+    [00:03.00]梁静茹 - 暖暖
+    [00:11.00]
+    [00:32.41]都可以随便的
+    [00:34.40]你说的我都愿意去
+    [00:37.14]小火车摆动的旋律
+    [00:41.57]都可以是真的
+    [00:43.21]你说的我都会相信
+    [00:46.07]因为我完全信任你
+    [00:50.76]细腻的喜欢 毛毯般的厚重感
+    [00:55.34]晒过太阳熟悉的安全感
+    [00:59.97]分享热汤 我们两支汤匙一个碗
+    [01:04.45]左心房暖暖的好饱满
+    [01:09.08]我想说其实你很好 你自己却不知道
+    [01:14.43]真心的对我好 不要求回报
+    [01:18.99]爱一个人希望他过更好
+    [01:23.55]打从心里暖暖的 你比自己更重要
+    [01:46.26]都可以随便的
+    [01:47.82]你说的我都愿意去
+    [01:51.14]回忆里满足的旋律
+    [01:55.23]都可以是真的
+    [01:57.09]你说的我都会相信
+    [02:00.06]因为我完全信任你
+    [02:04.94]细腻的喜欢 你手掌的厚实感
+    [02:09.22]什么困难都觉得有希望
+    [02:13.67]我哼着歌 你自然的就接下一段
+    [02:18.45]我知道暖暖就在胸膛
+    [02:22.97]我想说其实你很好 你自己却不知道
+    [02:28.24]真心的对我好 不要求回报
+    [02:32.85]爱一个人希望他过更好
+    [02:37.37]打从心里暖暖的 你比自己更重要
+    [02:46.01]我想说其实你很好 你自己却不知道
+    [02:51.39]从来都很低调 自信心不高
+    [02:55.99]爱一个人希望他过更好
+    [03:00.51]打从心里暖暖的 你比自己更重要
+    [03:05.73]我想说其实你很好 你自己却不知道
+    [03:09.91]真心的对我好 不要求回报
+    [03:14.36]爱一个人希望他过更好
+    [03:19.03]打从心里暖暖的 你比自己更重要
+    [03:28.64]我也希望变更好
+</textarea>
+
+        <!--歌曲控制区-->
+        <div style="display: none;" id="audio-controls">
+            <div class="control-btn" style="display: none;" id="preMusic">
+                << </div> <div class="control-btn" id="play-pause"> ▶
+            </div>
+            <div class="control-btn" style="display: none;" id="nextMusic"> >> </div>
+        </div>
+
+        <!--歌名&时间显示区-->
+        <div style="display: none;" id="name_time">
+            <span id="musicName"></span>
+           
+            <div id="time">
+                <span id="currentTimeTxt"></span> / <span id="totalTimeTxt"></span>
+            </div>
+        </div>
+
+         <!--进度条-->
+         <div style="display: none;" id="progress-bar">
+            <div id="finished"></div>
+        </div>
+
+        <!--播放器-->
+        <audio controls  loop src="./暖暖.mp3" id="audio"></audio>
+
+        <!--歌词显示区-->
+        <div id="lyric-area">
+            <ul id="showLrc"></ul>
+        </div>
+    </div>
+
+</body>
+<script>
+    var play_pause = document.getElementById("play-pause");
+    var preMusic = document.getElementById("preMusic");
+    var nextMusic = document.getElementById("nextMusic");
+
+    var musicName = document.getElementById("musicName");
+    var currentTimeTxt = document.getElementById("currentTimeTxt");
+    var totalTimeTxt = document.getElementById("totalTimeTxt");
+
+    var finished = document.getElementById("finished");
+
+    var audio = document.getElementById("audio");
+    var showLrc = document.getElementById("showLrc");
+    var lis = showLrc.getElementsByTagName("li");
+    var lrcContainerArr = document.getElementsByClassName('lrc-container');
+    var musicArr = ["暖暖", "丹歌惊鸿"]; //定义一个数组存储歌曲
+    var lrcArr = []; //定义一个数组存储歌词和对应的时间
+    var musicInd = 0; //歌曲索引
+    var currentlineNum = 0; //当前行
+    var middleLine = 1; //中间行
+    var scroll = -29; //滚动距离（等于行高）
+
+    getMusic();
+    getLrc();
+    console.log(audio.play());
+    // play_pause.innerText = "| |"
+    // audio.play();
+    //播放&暂停
+    play_pause.onclick = function () {
+        if (this.innerText == "▶") {
+            audio.play();
+            this.innerText = "| |"
+        } else {
+            audio.pause();
+            this.innerText = "▶"
+        }
+    }
+    //上一首
+    preMusic.onclick = function () {
+        currentlineNum = 0;
+        if (musicInd != 0) {
+            musicInd--;
+            getMusic();
+            getLrc();
+            if (play_pause.innerText != "▶") {
+                audio.play();
+            }
+        } else {
+            musicInd = musicArr.length - 1;
+            getMusic();
+            getLrc();
+            if (play_pause.innerText != "▶") {
+                audio.play();
+            }
+        }
+    };
+    //下一首
+    nextMusic.onclick = function () {
+        currentlineNum = 0;
+        if (musicInd < musicArr.length - 1) {
+            musicInd++;
+            getMusic();
+            getLrc();
+            if (play_pause.innerText != "▶") {
+                audio.play();
+            }
+        } else {
+            musicInd = 0;
+            getMusic();
+            getLrc();
+            if (play_pause.innerText != "▶") {
+                audio.play();
+            }
+        }
+    };
+    //歌曲加载完成后显示总时间
+    audio.oncanplay = function () {
+        var times = audio.duration;
+        setTime(totalTimeTxt, times);
+    };
+    //监听播放器的timeupdate事件，实现文字与音频播放同步
+    audio.ontimeupdate = function () {
+        //设置时间
+        var times = audio.currentTime;
+        setTime(currentTimeTxt, times);
+        //设置进度条
+        finished.style.width = audio.currentTime / audio.duration * 100 + "%";
+        var curTime = audio.currentTime; //播放器时间
+        //一次播完后再次播放
+        if (currentlineNum == 0) {
+            showLrc.lastChild.removeAttribute("class"); //去掉最后一行的高亮样式
+            showLrc.style.transform = "translateY(0)"; //回到第一行
+        }
+        //歌词同步
+        if (currentlineNum < lrcArr.length) {
+            if (parseFloat(lrcArr[currentlineNum].t) <= curTime) {
+                lineHigh();
+                currentlineNum++;
+            }
+        }
+    };
+    //整首歌播放结束
+    audio.onended = function () {
+        currentlineNum = 0;
+        if (musicInd < musicArr.length - 1) {
+            musicInd++;
+            getMusic();
+            getLrc();
+            if (play_pause.innerText != "▶") {
+                audio.play();
+            }
+        } else {
+            musicInd = 0;
+            getMusic();
+            getLrc();
+            if (play_pause.innerText != "▶") {
+                audio.play();
+            }
+        }
+    };
+    //获取歌曲
+    function getMusic() {
+        console.log(musicArr[musicInd]);
+        audio.src = musicArr[musicInd] + ".mp3";
+        musicName.innerText = musicArr[musicInd];
+    }
+    //获取歌词
+    function getLrc() {
+        lrcArr = [];
+        var lyric = lrcContainerArr[musicInd].innerText;
+        var theLrc = lyric.split("\n"); // 用换行符拆分获取到的歌词
+        showLrc.innerHTML = "";
+        for (var i = 0; i < theLrc.length; i++) {
+            var t = theLrc[i].substring(theLrc[i].indexOf("[") + 1, theLrc[i].indexOf("]"));
+            var time = (t.split(":")[0] * 60 + parseFloat(t.split(":")[1])).toFixed(3);
+            if (!isNaN(time)) {
+                lrcArr.push({
+                    t: time,
+                    c: theLrc[i].substring(theLrc[i].indexOf("]") + 1, theLrc[i].length)
+                });
+            }
+        }
+        for (var j = 0; j < lrcArr.length; j++) {
+            var liObj = document.createElement("li");
+            liObj.innerText = lrcArr[j].c;
+            showLrc.appendChild(liObj);
+        }
+    }
+    //时间显示
+    function setTime(element, times) {
+        if (times < 10) {
+            element.innerHTML = "0:0" + Math.floor(times);
+        } else if (times < 60) {
+            element.innerHTML = "0:" + Math.floor(times);
+        } else {
+            var minute = parseInt(times / 60);
+            var second = times - minute * 60;
+            if (second < 10) {
+                element.innerHTML = "0" + minute + ":" + "0" + parseInt(second);
+            } else {
+                element.innerHTML = "0" + minute + ":" + parseInt(second);
+            }
+        }
+    }
+    //显示当前歌词及文字滚动控制
+    function lineHigh() {
+        console.log(currentlineNum);
+        console.log(middleLine);
+        if (currentlineNum > 0) {
+            lis[currentlineNum - 1].removeAttribute("class"); //去掉上一行的高亮样式
+        }
+        lis[currentlineNum].className = "currentLrc"; //显示当前行
+        //文字滚动
+        if (currentlineNum > middleLine) {
+            showLrc.style.transform = "translateY(" + (currentlineNum - middleLine) * scroll + "px)"; //整体向上滚动一行高度
+            console.log((currentlineNum - middleLine) * scroll + "px")
+        }
+    }
+</script>
+
+</html>
